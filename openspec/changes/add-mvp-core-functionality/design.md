@@ -201,7 +201,7 @@ interface Requirement {
 interface Scenario {
   name: string;              // 场景名称
   conditions: {
-    type: 'WHEN' | 'THEN';
+    type: 'WHEN' | 'THEN' | 'AND' | 'BUT';
     text: string;
   }[];
 }

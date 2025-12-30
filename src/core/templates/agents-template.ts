@@ -113,6 +113,16 @@ export const agentsTemplate = `# NovelSpec AI 助手
 - **THEN** 引出对手李剑
 \`\`\`
 
+**正确** (使用 AND/BUT 表达复杂场景):
+\`\`\`markdown
+#### Scenario: 心机深沉但智商有限
+- **WHEN** 李梦造谣林晓时
+- **THEN** 她会精心策划，伪造证据（PS照片、聊天记录）
+- **AND** 在论坛和社交媒体传播谣言
+- **BUT** 她的智商不高，思考不周全，留下了漏洞
+- **THEN** 最终被林晓利用这些漏洞反击
+\`\`\`
+
 **错误** (don't use bullets or bold):
 \`\`\`markdown
 - **Scenario: 用户登录**  ❌

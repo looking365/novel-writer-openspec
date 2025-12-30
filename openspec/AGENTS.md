@@ -253,6 +253,23 @@ Minimal `design.md` skeleton:
 - **THEN** do not easily clash with a strong enemy
 ```
 
+**CORRECT** (use AND/BUT for additional conditions):
+```markdown
+#### Scenario: Villain plotting
+- **WHEN** Li Meng spread rumors about Lin Xiao
+- **THEN** she would carefully plan and fabricate evidence (PS photos, chat records)
+- **AND** spreading rumors on forums and social media
+- **BUT** her intelligence is not high, her thinking is not comprehensive, leaving loopholes
+- **THEN** Lin Xiao ultimately used these loopholes to counterattack
+```
+
+**TOLERATED** (without "-" prefix, for compatibility):
+```markdown
+#### Scenario: Example
+**WHEN** condition occurs
+**THEN** expected result
+```
+
 **WRONG** (don't use bullets or bold):
 ```markdown
 - **Scenario: User login**  ❌
@@ -263,8 +280,7 @@ Minimal `design.md` skeleton:
 **WRONG** (don't use other format):
 ```markdown
 #### Scenario: User login success
-**WHEN** valid credentials provided  ❌
-**THEN** valid the source website  ❌
+**WHEN** valid credentials provided
 - return JWT token  ❌
 ```
 

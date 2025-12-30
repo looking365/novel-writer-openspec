@@ -5,7 +5,7 @@
 export interface Scenario {
   name: string;
   conditions: {
-    type: 'WHEN' | 'THEN';
+    type: 'WHEN' | 'THEN' | 'AND' | 'BUT';
     text: string;
   }[];
   lineNumber?: number;
@@ -143,14 +143,39 @@ export class MarkdownParser {
         }
       }
 
-      // 提取 Scenario 条件（WHEN/THEN）
+      // 提取 Scenario 条件（WHEN/THEN/AND/BUT），支持带/不带 - 的格式
       if (currentScenario) {
+        // 标准/容错格式：**WHEN** text
         if (trimmedLine.startsWith('- **WHEN**')) {
           const text = trimmedLine.substring('- **WHEN**'.length).trim();
           currentScenario.conditions.push({ type: 'WHEN', text });
-        } else if (trimmedLine.startsWith('- **THEN**')) {
+        } else if (trimmedLine.startsWith('**WHEN**')) {
+          const text = trimmedLine.substring('**WHEN**'.length).trim();
+          currentScenario.conditions.push({ type: 'WHEN', text });
+        }
+        // 标准/容错格式：**THEN** text
+        else if (trimmedLine.startsWith('- **THEN**')) {
           const text = trimmedLine.substring('- **THEN**'.length).trim();
           currentScenario.conditions.push({ type: 'THEN', text });
+        } else if (trimmedLine.startsWith('**THEN**')) {
+          const text = trimmedLine.substring('**THEN**'.length).trim();
+          currentScenario.conditions.push({ type: 'THEN', text });
+        }
+        // 新增：标准/容错格式：**AND** text
+        else if (trimmedLine.startsWith('- **AND**')) {
+          const text = trimmedLine.substring('- **AND**'.length).trim();
+          currentScenario.conditions.push({ type: 'AND', text });
+        } else if (trimmedLine.startsWith('**AND**')) {
+          const text = trimmedLine.substring('**AND**'.length).trim();
+          currentScenario.conditions.push({ type: 'AND', text });
+        }
+        // 新增：标准/容错格式：**BUT** text
+        else if (trimmedLine.startsWith('- **BUT**')) {
+          const text = trimmedLine.substring('- **BUT**'.length).trim();
+          currentScenario.conditions.push({ type: 'BUT', text });
+        } else if (trimmedLine.startsWith('**BUT**')) {
+          const text = trimmedLine.substring('**BUT**'.length).trim();
+          currentScenario.conditions.push({ type: 'BUT', text });
         }
       }
     }
@@ -268,14 +293,39 @@ export class MarkdownParser {
         }
       }
 
-      // 提取 Scenario 条件
+      // 提取 Scenario 条件（WHEN/THEN/AND/BUT），支持带/不带 - 的格式
       if (currentScenario) {
+        // 标准/容错格式：**WHEN** text
         if (trimmedLine.startsWith('- **WHEN**')) {
           const text = trimmedLine.substring('- **WHEN**'.length).trim();
           currentScenario.conditions.push({ type: 'WHEN', text });
-        } else if (trimmedLine.startsWith('- **THEN**')) {
+        } else if (trimmedLine.startsWith('**WHEN**')) {
+          const text = trimmedLine.substring('**WHEN**'.length).trim();
+          currentScenario.conditions.push({ type: 'WHEN', text });
+        }
+        // 标准/容错格式：**THEN** text
+        else if (trimmedLine.startsWith('- **THEN**')) {
           const text = trimmedLine.substring('- **THEN**'.length).trim();
           currentScenario.conditions.push({ type: 'THEN', text });
+        } else if (trimmedLine.startsWith('**THEN**')) {
+          const text = trimmedLine.substring('**THEN**'.length).trim();
+          currentScenario.conditions.push({ type: 'THEN', text });
+        }
+        // 新增：标准/容错格式：**AND** text
+        else if (trimmedLine.startsWith('- **AND**')) {
+          const text = trimmedLine.substring('- **AND**'.length).trim();
+          currentScenario.conditions.push({ type: 'AND', text });
+        } else if (trimmedLine.startsWith('**AND**')) {
+          const text = trimmedLine.substring('**AND**'.length).trim();
+          currentScenario.conditions.push({ type: 'AND', text });
+        }
+        // 新增：标准/容错格式：**BUT** text
+        else if (trimmedLine.startsWith('- **BUT**')) {
+          const text = trimmedLine.substring('- **BUT**'.length).trim();
+          currentScenario.conditions.push({ type: 'BUT', text });
+        } else if (trimmedLine.startsWith('**BUT**')) {
+          const text = trimmedLine.substring('**BUT**'.length).trim();
+          currentScenario.conditions.push({ type: 'BUT', text });
         }
       }
     }
