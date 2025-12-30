@@ -95,10 +95,6 @@ export class MarkdownParser {
 
       // 识别 Requirement
       if (trimmedLine.startsWith('### Requirement:')) {
-        if (currentRequirement && currentOperation) {
-          currentOperation.requirements.push(currentRequirement);
-        }
-
         const name = trimmedLine.substring('### Requirement:'.length).trim();
         currentRequirement = {
           name,
@@ -107,6 +103,9 @@ export class MarkdownParser {
           scenarios: [],
           lineNumber: i + 1,
         };
+        if (currentRequirement && currentOperation) {
+          currentOperation.requirements.push(currentRequirement);
+        }
         inRequirement = true;
         currentScenario = null;
         continue;
@@ -114,16 +113,15 @@ export class MarkdownParser {
 
       // 识别 Scenario
       if (trimmedLine.startsWith('#### Scenario:')) {
-        if (currentScenario && currentRequirement) {
-          currentRequirement.scenarios.push(currentScenario);
-        }
-
         const name = trimmedLine.substring('#### Scenario:'.length).trim();
         currentScenario = {
           name,
           conditions: [],
           lineNumber: i + 1,
         };
+        if (currentScenario && currentRequirement) {
+          currentRequirement.scenarios.push(currentScenario);
+        }
         continue;
       }
 

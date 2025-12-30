@@ -103,6 +103,34 @@ export const agentsTemplate = `# NovelSpec AI 助手
 - **THEN** 返回JWT令牌
 \`\`\`
 
+**正确** (使用 多个 "- **THEN**"):
+\`\`\`markdown
+#### Scenario: 大比开幕
+- **WHEN** 第11章开始
+- **THEN** 宗门宣布三年一度大比
+- **THEN** 介绍奖励：前三名进入藏经阁
+- **THEN** 主角决定参加
+- **THEN** 引出对手李剑
+\`\`\`
+
+**错误** (don't use bullets or bold):
+\`\`\`markdown
+- **Scenario: 用户登录**  ❌
+**Scenario**: 用户登录    ❌
+### Scenario: 用户登录    ❌
+\`\`\`
+
+**错误** (使用其他格式, 不使用 "- **THEN**"):
+\`\`\`markdown
+#### Scenario: 大比开幕
+- **WHEN** 第11章开始
+- **THEN** 宗门宣布三年一度大比
+- 介绍奖励：前三名进入藏经阁     ❌
+- 主角决定参加        ❌
+   - 引出对手李剑     ❌
+\`\`\`
+
+
 每个需求必须至少有一个scenario。
 
 ### 需求措辞

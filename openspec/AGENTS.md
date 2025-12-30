@@ -244,11 +244,28 @@ Minimal `design.md` skeleton:
 - **THEN** return JWT token
 ```
 
+**CORRECT** (use more "- **THEN**"):
+```markdown
+#### Scenario: Facing Danger
+- **WHEN** facing life-threatening situations
+- **THEN** remain calm and analyze the situation rationally
+- **THEN** prioritize finding an escape route
+- **THEN** do not easily clash with a strong enemy
+```
+
 **WRONG** (don't use bullets or bold):
 ```markdown
 - **Scenario: User login**  ❌
 **Scenario**: User login     ❌
 ### Scenario: User login      ❌
+```
+
+**WRONG** (don't use other format):
+```markdown
+#### Scenario: User login success
+**WHEN** valid credentials provided  ❌
+**THEN** valid the source website  ❌
+- return JWT token  ❌
 ```
 
 Every requirement MUST have at least one scenario.
